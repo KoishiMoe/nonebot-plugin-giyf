@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nonebot-plugin-giyf"
-version = "0.1.0"
+version = "0.1.1"
 description = "nonebot2 群聊快速生成搜索引擎链接"
 authors = ["KoishiChan <68314080+KoishiStudio@users.noreply.github.com>"]
 license = "AGPL-3.0-or-later"
