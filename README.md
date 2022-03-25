@@ -16,10 +16,10 @@ _适用于 [NoneBot2](https://v2.nonebot.dev) 的搜索引擎插件_
 ![nonebot2](https://img.shields.io/badge/nonebot2-2.0.0b2-yellowgreen)
 [![GitHub license](https://img.shields.io/github/license/KoishiStudio/nonebot-plugin-giyf)](https://github.com/KoishiStudio/nonebot-plugin-giyf/blob/main/LICENSE)
 [![pypi](https://img.shields.io/pypi/v/nonebot-plugin-giyf?color=blue)](https://pypi.org/project/nonebot-plugin-giyf/)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/nonebot-plugin-giyf)
 
 [![GitHub issues](https://img.shields.io/github/issues/KoishiStudio/nonebot-plugin-giyf)](https://github.com/KoishiStudio/nonebot-plugin-giyf/issues)
 [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/KoishiStudio/nonebot-plugin-giyf?include_prereleases)](https://github.com/KoishiStudio/nonebot-plugin-giyf/releases)
-[![GitHub all releases downloads](https://img.shields.io/github/downloads/KoishiStudio/nonebot-plugin-giyf/total)](https://github.com/KoishiStudio/nonebot-plugin-giyf/releases)
 ![GitHub contributors](https://img.shields.io/github/contributors/KoishiStudio/nonebot-plugin-giyf)
 ![GitHub Repo stars](https://img.shields.io/github/stars/KoishiStudio/nonebot-plugin-giyf?style=social)
 
