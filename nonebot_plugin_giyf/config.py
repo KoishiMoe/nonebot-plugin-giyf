@@ -21,7 +21,7 @@ class Config:
         return self._save_data(glob=glob)
 
     def del_engine(self, prefix: str, glob: bool = False) -> bool:
-        return self.__engines_global.pop(prefix, False) and self._save_data() if glob \
+        return self.__engines_global.pop(prefix, False) and self._save_data(glob=True) if glob \
             else self.__engines.pop(prefix, False) and self._save_data()
 
     def __get_config(self, glob: bool = False) -> dict:

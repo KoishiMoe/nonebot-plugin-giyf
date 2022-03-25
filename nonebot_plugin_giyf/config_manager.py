@@ -9,6 +9,17 @@ from nonebot.typing import T_State
 from .config import Config
 
 QUIT_LIST = ["取消", "quit", "退出"]
+BUILTIN_ENGINES = {
+    "google": ["go", "https://www.google.com/search?q=%s"],
+    "bing": ["bing", "https://www.bing.com/search?q=%s"],
+    "baidu": ["bd", "https://www.baidu.com/s?wd=%s"],
+    "duckduckgo": ["ddg", "https://duckduckgo.com/?q=%s"],
+    "startpage": ["start", "https://www.startpage.com/sp/search?query=%s"],
+    "zhwikipedia": ["zhwp", "https://zh.wikipedia.org/wiki/Special:Search/%s"],
+    "enwikipedia": ["enwp", "https://en.wikipedia.org/wiki/Special:Search/%s"],
+    "yahoo": ["yahoo", "https://search.yahoo.com/search?p=%s"],
+    "yandex": ["yandex", "https://www.yandex.com/search/?text=%s"],
+}
 BotConfig = get_driver().config
 
 add_engine = on_command("search.add", permission=SUPERUSER | GROUP_ADMIN | GROUP_OWNER)
@@ -17,11 +28,22 @@ add_engine = on_command("search.add", permission=SUPERUSER | GROUP_ADMIN | GROUP
 @add_engine.handle()
 async def _add_engine(bot: Bot, event: MessageEvent, state: T_State):
     msg = str(event.message).strip().removeprefix("search.add")
-    state["global"] = msg == '.global'
+    params_list = msg.split(maxsplit=2)
+
+    state["global"] = params_list[0] == '.global'
+    if state["global"]:
+        params_list.pop(0)
+
+    # 检查是否是快速添加
+    if params_list and params_list[0].lower() in BUILTIN_ENGINES.keys():
+        tmp_engine = BUILTIN_ENGINES.get(params_list[0].lower())
+        state["prefix"] = params_list[1].lower() if len(params_list) == 2 else tmp_engine[0]
+        state["url"] = tmp_engine[1]
+    else:
+        await add_engine.finish(f"快速添加失败：需要添加的搜索引擎不在列表。\n预置的引擎有：{'、'.join(BUILTIN_ENGINES.keys())}")
 
     # 权限检查：全局命令只允许超管执行；这里检查可以省一个响应器（
-    if state["global"] and event.user_id not in BotConfig.superusers and str(event.user_id) not in BotConfig.superusers:
-        # 佛了，superuser怎么是str啊……
+    if state["global"] and str(event.user_id) not in BotConfig.superusers:  # superusers里面是str……
         await add_engine.finish()
 
 
@@ -86,7 +108,7 @@ async def _delete_engine(bot: Bot, event: MessageEvent, state: T_State):
     msg = str(event.message).strip().removeprefix("search.delete")
     state["global"] = msg == '.global'
 
-    if state["global"] and event.user_id not in BotConfig.superusers and str(event.user_id) not in BotConfig.superusers:
+    if state["global"] and str(event.user_id) not in BotConfig.superusers:
         await delete_engine.finish()
 
 

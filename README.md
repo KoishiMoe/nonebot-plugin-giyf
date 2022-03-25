@@ -44,6 +44,8 @@ Tip：本插件的设置系统和 nonebot plugin-mediawiki 基本一致，因此
 
 添加（全局）搜索引擎： `search.add` `search.add.global`
 
+快速添加： `search.add(.global) [预置的搜索引擎名称] [自定义前缀（可选）]`
+
 删除（全局）搜索引擎： `search.delete` `search.delete.global`
 
 修改（全局）搜索引擎： `search.default` `search.default.global`
@@ -53,6 +55,11 @@ Tip：本插件的设置系统和 nonebot plugin-mediawiki 基本一致，因此
 **其中所有非全局指令均需要在目标群中进行，所有全局指令均只有Bot管理员能执行**
 
 ### 参数说明：
+
+#### 快速添加
+* 预置的搜索引擎名称：bot内置的引擎名称，目前有 `google` `bing` `baidu` `duckduckgo` `startpage` `zhwikipedia` `enwikipedia` `yahoo` `yandex`
+* 自定义前缀：你可以使用自己的前缀来代替bot预设的前缀；关于“前缀”的说明见下
+
 #### 前缀
 就是你给这个搜索引擎起的代号，好记就行，例如给谷歌娘叫`go`，给度娘叫`bd`，等等。**只支持英文和数字**
 
@@ -93,4 +100,4 @@ Tip：某些搜索引擎的链接可能包含你的一些个人信息，建议�
 ```
 
 ## TODO
-- [ ] 内置一些常用的搜索引擎，用来快速添加
+- [x] 内置一些常用的搜索引擎，用来快速添加
