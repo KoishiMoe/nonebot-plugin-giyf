@@ -12,7 +12,7 @@ _适用于 [NoneBot2](https://v2.nonebot.dev) 的搜索引擎插件_
 
 ------
 
-![Python](https://img.shields.io/badge/python-3.8%2B-lightgrey)
+![Python](https://img.shields.io/badge/python-3.7%2B-lightgrey)
 ![nonebot2](https://img.shields.io/badge/nonebot2-2.0.0b2-yellowgreen)
 [![GitHub license](https://img.shields.io/github/license/KoishiStudio/nonebot-plugin-giyf)](https://github.com/KoishiStudio/nonebot-plugin-giyf/blob/main/LICENSE)
 [![pypi](https://img.shields.io/pypi/v/nonebot-plugin-giyf?color=blue)](https://pypi.org/project/nonebot-plugin-giyf/)
