@@ -3,6 +3,7 @@ import re
 from nonebot import on_command, get_driver
 from nonebot.adapters.onebot.v11 import GroupMessageEvent, Bot, MessageEvent
 from nonebot.adapters.onebot.v11.permission import GROUP_OWNER, GROUP_ADMIN
+from nonebot.params import RawCommand
 from nonebot.permission import SUPERUSER
 from nonebot.typing import T_State
 
@@ -26,8 +27,8 @@ add_engine = on_command("search.add", permission=SUPERUSER | GROUP_ADMIN | GROUP
 
 
 @add_engine.handle()
-async def _add_engine(bot: Bot, event: MessageEvent, state: T_State):
-    msg = str(event.message).strip().removeprefix("search.add")
+async def _add_engine(bot: Bot, event: MessageEvent, state: T_State, raw_command: str = RawCommand()):
+    msg = str(event.message).strip().removeprefix(raw_command)
     params_list = msg.split(maxsplit=2)
 
     state["global"] = params_list[0] == '.global'
@@ -81,8 +82,8 @@ list_engine = on_command("search.list")
 
 
 @list_engine.handle()
-async def _list_engine(bot: Bot, event: MessageEvent, state: T_State):
-    msg = str(event.message).strip().removeprefix("search.list")
+async def _list_engine(bot: Bot, event: MessageEvent, state: T_State, raw_command: str = RawCommand()):
+    msg = str(event.message).strip().removeprefix(raw_command)
     glob = msg == '.global'
 
     if not glob:
@@ -104,8 +105,8 @@ delete_engine = on_command("search.delete", permission=SUPERUSER | GROUP_ADMIN |
 
 
 @delete_engine.handle()
-async def _delete_engine(bot: Bot, event: MessageEvent, state: T_State):
-    msg = str(event.message).strip().removeprefix("search.delete")
+async def _delete_engine(bot: Bot, event: MessageEvent, state: T_State, raw_command: str = RawCommand()):
+    msg = str(event.message).strip().removeprefix(raw_command)
     state["global"] = msg == '.global'
 
     if state["global"] and str(event.user_id) not in BotConfig.superusers:

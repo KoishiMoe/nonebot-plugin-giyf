@@ -15,7 +15,7 @@ __usage__ = '使用：\n' \
             '删除：search.delete，search.delete.global\n' \
             '列表：search.list，search.list.global'
 
-__help_version__ = '0.0.1 (Flandre)'
+__help_version__ = '0.1.2'
 
 __help_plugin_name__ = '快速搜索'
 
