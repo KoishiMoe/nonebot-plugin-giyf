@@ -1,6 +1,7 @@
 from nonebot import on_startswith
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent
 from nonebot.adapters.onebot.v11.permission import GROUP
+from nonebot.matcher import Matcher
 
 from . import config_manager
 from .config import Config
@@ -19,9 +20,9 @@ __help_version__ = '0.1.2'
 
 __help_plugin_name__ = '快速搜索'
 
-search = on_startswith(("?", "？"), permission=GROUP)
+search = on_startswith(("?", "？"), permission=GROUP, block=False)
 
 
 @search.handle()
-async def _search(bot: Bot, event: GroupMessageEvent):
-    await search_handle(bot, event)
+async def _search(bot: Bot, event: GroupMessageEvent, matcher: Matcher):
+    await search_handle(bot, event, matcher)

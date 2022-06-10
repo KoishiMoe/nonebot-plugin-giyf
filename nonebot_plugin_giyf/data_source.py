@@ -3,11 +3,12 @@ from typing import Optional
 from urllib import parse
 
 from nonebot.adapters.onebot.v11 import Bot, utils, GroupMessageEvent
+from nonebot.matcher import Matcher
 
 from .config import Config
 
 
-async def search_handle(bot: Bot, event: GroupMessageEvent):
+async def search_handle(bot: Bot, event: GroupMessageEvent, matcher: Matcher):
     msg = str(event.message).strip().lstrip(" ？?")
     msg = utils.unescape(msg)
     cfg: Config = Config(event.group_id)
@@ -18,6 +19,7 @@ async def search_handle(bot: Bot, event: GroupMessageEvent):
 
     url = cfg.get_url(prefix)
     if url:
+        matcher.stop_propagation()
         await bot.send(event, url_parse(url, keyword))
 
 
