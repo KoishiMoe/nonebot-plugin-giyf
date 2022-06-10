@@ -28,7 +28,7 @@ add_engine = on_command("search.add", permission=SUPERUSER | GROUP_ADMIN | GROUP
 
 @add_engine.handle()
 async def _add_engine(bot: Bot, event: MessageEvent, state: T_State, raw_command: str = RawCommand()):
-    msg = str(event.message).strip().removeprefix(raw_command)
+    msg = str(event.message).strip()[len(raw_command.strip()):].lstrip()
     params_list = msg.split(maxsplit=2)
 
     state["global"] = params_list[0] == '.global'
@@ -83,7 +83,7 @@ list_engine = on_command("search.list")
 
 @list_engine.handle()
 async def _list_engine(bot: Bot, event: MessageEvent, state: T_State, raw_command: str = RawCommand()):
-    msg = str(event.message).strip().removeprefix(raw_command)
+    msg = str(event.message).strip()[len(raw_command.strip()):].lstrip()
     glob = msg == '.global'
 
     if not glob:
@@ -106,7 +106,7 @@ delete_engine = on_command("search.delete", permission=SUPERUSER | GROUP_ADMIN |
 
 @delete_engine.handle()
 async def _delete_engine(bot: Bot, event: MessageEvent, state: T_State, raw_command: str = RawCommand()):
-    msg = str(event.message).strip().removeprefix(raw_command)
+    msg = str(event.message).strip()[len(raw_command.strip()):].lstrip()
     state["global"] = msg == '.global'
 
     if state["global"] and str(event.user_id) not in BotConfig.superusers:
